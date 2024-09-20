@@ -1,33 +1,41 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./TasksContainer.module.scss";
-import ModalContainer from "../ModalsContainer";
+import ModalContainer from "@/components/ModalsContainer";
+import { TaskList } from "@/components/TaskList";
+import { useTasks } from "@/hooks/useTasks";
 
 export default function TasksContainer() {
-  const [tasks, setTasks] = useState<string[]>([]);
-  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
-  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
-
-  useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
+  const {
+    tasks,
+    completedTasks,
+    newTaskTitle,
+    isCreateTaskModalOpen,
+    setNewTaskTitle,
+    setIsCreateTaskModalOpen,
+    addNewTask,
+    markAsCompleted,
+    markAsPending,
+    deleteTask,
+  } = useTasks();
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <div className={styles.tasksContainer}>
           <div className={styles.title}>Suas tarefas de hoje</div>
-          <div className={styles.tasks}>
-            {tasks.length === 0 ? "-" : <div>Há itens</div>}
-          </div>
+          <TaskList
+            tasks={tasks}
+            markAsCompleted={markAsCompleted}
+            deleteTask={deleteTask}
+          />
           <div className={styles.title}>Tarefas finalizadas</div>
-          <div className={styles.completedTasks}>
-            {completedTasks.length === 0 ? "-" : <div>Há itens</div>}
-          </div>
+          <TaskList
+            tasks={completedTasks}
+            markAsCompleted={markAsPending}
+            deleteTask={deleteTask}
+          />
         </div>
         <button
           className={`${styles.button} normal-bg`}
@@ -38,7 +46,7 @@ export default function TasksContainer() {
       </div>
       {isCreateTaskModalOpen && (
         <ModalContainer
-          action={() => console.log("oi")}
+          action={addNewTask}
           actionName="Adicionar"
           closeModal={() => setIsCreateTaskModalOpen(false)}
           title="Nova tarefa"
@@ -52,6 +60,8 @@ export default function TasksContainer() {
               id="inputTitle"
               className={styles.input}
               placeholder="Digite"
+              value={newTaskTitle}
+              onChange={(e) => setNewTaskTitle(e.target.value)}
             />
           </div>
         </ModalContainer>
