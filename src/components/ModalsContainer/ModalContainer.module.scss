@@ -34,18 +34,16 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%; /* Ocupa toda a largura do modalContainer */
+  width: 100%;
 }
 
 .button,
 .cancelButton {
-  width: calc(
-    100% - 40px
-  ); /* Botões ocupam toda a largura do buttonContainer */
+  width: calc(100% - 40px);
   border: none;
   cursor: pointer;
   height: 51px;
-  padding: 16px 24px; /* Você pode ajustar o padding conforme necessário */
+  padding: 16px 24px;
   border-radius: 8px;
 
   &:hover {
@@ -79,6 +77,10 @@
 
   .button,
   .cancelButton {
-    width: 100%;
+    width: 50%;
+  }
+
+  .buttonContainer {
+    flex-direction: row-reverse;
   }
 }
