@@ -1,0 +1,76 @@
+.taskList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.none {
+  text-align: center;
+}
+
+.taskItem {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px dashed #d7dde9;
+  border-radius: 8px;
+}
+
+.checkBoxContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 50%;
+}
+
+.finished {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+
+  &:checked {
+    border: 1px solid #0796d3;
+    appearance: none;
+    background-color: #a0dcf6;
+    border-color: #0796d3;
+    position: relative;
+  }
+
+  &:checked::before {
+    content: "✓";
+    color: #0796d3;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.halfLineThrough {
+  color: #0000008a;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: #0000008a;
+}
