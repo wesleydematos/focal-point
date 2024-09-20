@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 450px;
+}
+
+.tasksContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eaecf0;
+  margin-top: 24px;
+  padding: 32px;
+  border-radius: 16px;
+  gap: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.tasks,
+.completedTasks {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  transition: background 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.createTaskChildren {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 40px);
+  margin: 10px 0 20px 0;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #d7dde9;
+}
+
+@media (min-width: 1440px) {
+  .createTaskChildren {
+    width: 100%;
+  }
+}
