@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { Task } from "@/types";
 
 export function useTasks() {
@@ -34,6 +35,7 @@ export function useTasks() {
 
     setNewTaskTitle("");
     setIsCreateTaskModalOpen(false);
+    toast.success("Tarefa adicionada!");
   };
 
   const markAsCompleted = (taskId: string) => {
@@ -50,6 +52,7 @@ export function useTasks() {
         "completedTasks",
         JSON.stringify(updatedCompletedTasks)
       );
+      toast("Tarefa efetuada!", { icon: "👏" });
     }
   };
 
@@ -69,6 +72,7 @@ export function useTasks() {
       const updatedTasks = [...tasks, taskToUncomplete];
       setTasks(updatedTasks);
       localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      toast.success("Tarefa movida para pendente!");
     }
   };
 
@@ -85,6 +89,7 @@ export function useTasks() {
       "completedTasks",
       JSON.stringify(updatedCompletedTasks)
     );
+    toast.success("Tarefa removida!");
   };
 
   return {
